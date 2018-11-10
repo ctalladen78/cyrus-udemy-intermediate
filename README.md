@@ -1,2 +1,3 @@
 # cyrus-udemy-intermediate
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+# TODO LIST
+-[ ] make lots of money
