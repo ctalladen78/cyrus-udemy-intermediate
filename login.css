@@ -3,7 +3,7 @@
 
 /*css for login page */
 body {
-      margin: 0;
+      margin: 50;
 }
 .cyrus-class {
   display: flex;
@@ -59,7 +59,7 @@ body {
 .ctdp1 {
       font-family: 'Share', cursive;
           color: #c0c0c0;
-              float: right; 
+              float: right;
 }
 .ctdp2 {
       font-family: 'Share', cursive;
@@ -76,7 +76,7 @@ body {
 }
 .ctdp4 {
       font-family: 'Share', cursive;
-          color: #666666; 
+          color: #666666;
               text-align: center;
 }
 .logdiv {
@@ -87,7 +87,7 @@ body {
                       border-left: 1px solid #ffffff;
                           box-shadow: 1px 1px 1px #6d6969;
                               font-family: 'Baloo', cursive;
-                                  color: #ffffff;  
+                                  color: #ffffff;
                                       font-stretch: extra-expanded;
                                           transition-duration: 1s;
 }
@@ -111,7 +111,7 @@ a {
 }
 
 /*
-responsive only for desktop 
+responsive only for desktop
 */
 
 @media only screen and (min-width: 1030px) {
@@ -192,7 +192,7 @@ responsive only for desktop
                 display: none;
                     }
                         .rowCo {
-                                  
+
                                           flex-direction: column;
                                                   align-content: center;
                                                       }
