@@ -23,10 +23,12 @@ class _CreateUserState extends State<CreateUserScreen> {
 
     FirebaseUser user = await loginService.createUser(email: email, pwd: password);
     if(user != null){
+      user.sendEmailVerification();
       Navigator.pop(context);
     }
   }
 
+  //  use TextField.onChanged listener to implement clear text button
   @override
   Widget build(BuildContext context) {
     return Scaffold(

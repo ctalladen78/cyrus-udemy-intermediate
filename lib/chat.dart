@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 /*
@@ -60,3 +61,15 @@ https://github.com/OneSignal/OneSignal-Flutter-SDK/blob/master/example/lib/main.
     }
   }
  */
+class ChatScreen extends StatefulWidget {
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+       child: Container(),
+    );
+  }
+}

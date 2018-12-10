@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'contact_list.dart';
+import 'home_screen.dart';
 import 'routes.dart';
 
 
@@ -50,7 +50,7 @@ class LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(
             builder: (context) =>
                 // MainScreen(currentUserId: prefs.getString('id'))),
-                MyHomePage(currentUserId: prefs.getString('id'))),
+                HomeScreen(currentUserId: prefs.getString('id'))),
       );
     }
 

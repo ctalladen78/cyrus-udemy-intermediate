@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_forms/login_service.dart';
 // import 'package:firebase_forms/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_forms/home_screen.dart';
 
 class LoginEmailScreen extends StatefulWidget {
 
@@ -18,16 +19,29 @@ class _LoginEmailState extends State<LoginEmailScreen> {
   @override
   final data = {};
 
-  // TODO pop everything and replace with main screen
+  //  pop everything and replace with main screen
+  // https://stackoverflow.com/questions/44978216/flutter-remove-back-button-on-appbar
+  // https://stackoverflow.com/questions/45889341/flutter-remove-all-routes
   Future<Null> submitForm(BuildContext context) async {
     String email = _emailController.text;
     String password = _pwdController.text;
 
     FirebaseUser user = await loginService.loginWithEmail(email: email, pwd: password);
+    if(!user.isEmailVerified){print("EMAIL is NOT VERIFIED");}
     if(user.uid != null){
-      Navigator.pushNamedAndRemoveUntil(context, "/contacts", 
-        (Route<dynamic> route) => false
-      );
+      // Navigator.pushNamedAndRemoveUntil(context, "/contacts", 
+      //   (Route<dynamic> route) => false
+      // );
+      String id = await loginService.getUID();
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  // MainScreen(currentUserId: prefs.getString('id'))),
+                  HomeScreen(currentUserId: id)
+          ),
+          (Route<dynamic> route) => false
+        );
     }
 
   }

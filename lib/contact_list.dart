@@ -11,16 +11,16 @@ import 'package:firebase_forms/login_service.dart';
 import 'routes.dart';
 import 'main.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.currentUserId}) : super(key: key);
+class ContactListScreen extends StatefulWidget {
   final String currentUserId ;
+  ContactListScreen({Key key, this.currentUserId}) : super(key: key);
 
   @override
   // _MyHomePageState createState() => _MyHomePageState(currentUserId);
   _MyHomePageState createState() => _MyHomePageState(currentUserId);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<ContactListScreen> {
 
   String _currentUserId;
   _MyHomePageState(String currentUserId){
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _makePayment() async {
     // TODO stripe payment cloud function 
-    // TODO param: form input with card details
+    //  param: form input with card details
     // dynamic response = await CloudFunctions.instance.call(functionName: 'stripePayment');
   }
 
@@ -73,7 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-      // TODO: implement initState
       super.initState();
       testDb();
     }
@@ -140,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //   print("key $k , val $v");
     // });
     // keys must correspond to firestore document keys
-    // TODO this is not using stream. refactor
+    //  this is not using stream. 
     CollectionReference collection = Firestore.instance.collection('baby');
     DocumentReference newDoc = await collection.add(user);
     String docId = newDoc.documentID;
@@ -148,10 +147,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  // TODO go to chat conversation screen
-
+  // TODO navigate to chat conversation screen
   // add to votes count
   void _update(Record record){
+    // TODO Navigate to chat screen passing uid
     Firestore.instance.runTransaction((transaction) async {
       final freshSnapshot = await transaction.get(record.reference);
       final fresh = Record.fromSnapshot(freshSnapshot);
@@ -159,6 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
       await transaction.update(record.reference, {'votes' : fresh.votes + 1});
       });
   }
+
 
   void _deleteItem(Record record) {
     Firestore.instance.runTransaction((tx) async {
@@ -174,11 +174,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // TODO add to contacts
   // TODO firebase collection of related user id
-  // TODO 
   void _addToContacts(Record record) {
 
   }
-  // TODO create full page dialog 
   // https://marcinszalek.pl/flutter/flutter-fullscreendialog-tutorial-weighttracker-ii/
   _buildForm(BuildContext context, GlobalKey<FormState> key) {
     var data = {};

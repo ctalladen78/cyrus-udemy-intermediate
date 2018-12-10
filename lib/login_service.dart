@@ -1,5 +1,5 @@
 
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,8 +25,6 @@ class LoginService {
     return await FirebaseAuth.instance.currentUser().then((data){return data.uid;}).catchError((err){return "";});
   } 
 
-
-
   // check if already logged in
   // return uid string if true
   Future<String> checkSignedIn() async {
@@ -38,6 +36,8 @@ class LoginService {
       print("SIGNED in ID ${currentUser.uid}");  
       return currentUser.uid;
     }
+    print("NOT SIGNED IN $isSignedIn");
+    return "";
   }
 
   Future<Null> logout() async {
@@ -47,7 +47,6 @@ class LoginService {
     currentUser = null;
   }
 
-  // TODO implement on login screen
   Future<FirebaseUser> loginWithEmail({email: String , pwd: String }) async {
     print("LOGIN w EMAIL $email $pwd");
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -58,13 +57,12 @@ class LoginService {
     return user;
   }
 
-  // TODO implement create account on login screen
   Future<FirebaseUser> createUser({email: String , pwd: String}) async{
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     FirebaseUser user = await firebaseAuth.createUserWithEmailAndPassword(
       email: email, password: pwd
     );
-    await user.sendEmailVerification();
+    user.sendEmailVerification().catchError((err){print("EMAIL VERIFICATION error $err");});
     return user;
   }
 

@@ -1,6 +1,5 @@
 // TODO use google profile login
 // TODO use facebook profile login
-// TODO user registration form email password
 
 import 'dart:async';
 
@@ -12,11 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_forms/contact_list.dart';
+import 'package:firebase_forms/home_screen.dart';
 import 'package:firebase_forms/login_service.dart';
 import 'package:firebase_forms/routes.dart';
 
-// LoginScreen(title: "chat Demo")
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key, this.title}) : super(key: key);
 
@@ -28,18 +26,14 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   final LoginService loginService = new LoginService();
-
-
   bool isLoading = false;
-  // bool _isLoggedIn = false;
-  // FirebaseUser currentUser;
 
+  
   @override
   void initState() {
     super.initState();
     loginService.checkSignedIn().then((uid){
-      // String uid = data.uid;
-      // String uid = await loginService.getUID();
+      print("login id $uid");
       if (uid.length > 0) {
         print("PRIOR login id ${uid}");
         Navigator.pushReplacement(
@@ -47,8 +41,9 @@ class LoginScreenState extends State<LoginScreen> {
           MaterialPageRoute(
               builder: (context) =>
                   // MainScreen(currentUserId: prefs.getString('id'))),
-                  MyHomePage()
-          )
+                  HomeScreen(currentUserId: uid)
+          ),
+          // (Route<dynamic> route) => false
         );
       }
     }).catchError((err){print("not prior login");});
@@ -73,7 +68,15 @@ class LoginScreenState extends State<LoginScreen> {
 
       // redirect to main home page
       // pushReplacement : enter , popAndPushName : exit
-      Navigator.pushReplacementNamed(context, "/contacts");
+      // Navigator.pushReplacementNamed(context, "/contacts");
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  // MainScreen(currentUserId: prefs.getString('id'))),
+                  HomeScreen(currentUserId:uid)
+          )
+        );
     }else{
       Fluttertoast.showToast(msg: "Sign in fail"); // TODO ask to make a profile
       this.setState(() {

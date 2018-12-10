@@ -3,6 +3,7 @@ import 'contact_list.dart';
 import 'login_screen.dart';
 import 'login_email.dart';
 import 'create_user.dart';
+import 'home_screen.dart';
 
 class Routes {
   var _routes;
@@ -10,7 +11,8 @@ class Routes {
   Routes(BuildContext context) {
     _routes = <String, WidgetBuilder>{
       "/" : (context) => LoginScreen(),
-      "/contacts" : (context) => MyHomePage(),
+      // "/home" : (context) => HomeScreen(),
+      "/contacts" : (context) => ContactListScreen(),
       "/login_email" : (context) => LoginEmailScreen(),
       "/create_user" : (context) => CreateUserScreen()
     };
